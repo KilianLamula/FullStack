@@ -1,6 +1,5 @@
 # Un "MonoRepo" avec Spring Boot, vue.js et Bootstrap
 
-
 ## Project setup
 
 ```
@@ -13,6 +12,7 @@ frontback
 │ └── pom.xml
 └── pom.xml     → Maven parent pom managing both modules
 ```
+
 ## Pour exécuter le projet
 
 A la racine du projet: 
@@ -30,8 +30,6 @@ mvn --projects backend spring-boot:run
 
 Ouvrir http://localhost:8989/ pour accéder à l'application.
 
-
-
 ## Utilisation des outils de développement "front-end"
 
 On peut lancer webpack-dev-server, qui "rafraîchit" automatiquement le front-end à chaque changement dans le code ! Pour celà, se positionner dans le répertoire `frontend` et lancer :
@@ -39,6 +37,7 @@ On peut lancer webpack-dev-server, qui "rafraîchit" automatiquement le front-en
 ```
 npm run serve
 ```
+
 ## Browser developer tools extension
 
 Installer vue-devtools Browser extension https://devtools.vuejs.org/  dans votre navigateur pour débugger plus facilement le front-end.

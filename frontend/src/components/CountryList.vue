@@ -14,12 +14,6 @@
           <td>{{ country.name }}</td>
           <td>
             <button
-              class="btn btn-sm btn-outline-primary"
-              @click="editCountry(country)"
-            >
-              Editer
-            </button> 
-            <button
               class="btn btn-sm btn-outline-danger"
               @click="deleteCountry(country)"
             >

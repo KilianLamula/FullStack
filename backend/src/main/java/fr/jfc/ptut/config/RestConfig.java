@@ -27,7 +27,7 @@ public class RestConfig implements RepositoryRestConfigurer {
         cors.addMapping("/**") // Autorisé sur toutes les URL
             .allowedOrigins("*") // Autorisé sur toutes les origines
             .allowedMethods("*") // Autorisé pour toutes les méthodes HTTP
-            .allowCredentials(true); // Autorise la transmission des infos d'authentification
+            .allowCredentials(false); // Interdit la transmission des infos d'authentification
     }
     
 }
