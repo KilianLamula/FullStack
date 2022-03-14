@@ -3,6 +3,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.*;
 
 // Un exemple d'entité
@@ -27,6 +30,7 @@ public class Country {
     // @OneToMany
     // Lombok https://www.projectlombok.org/features/ToString
     @ToString.Exclude // On ne veut pas inclure la liste des villes dans le toString
+    @JsonIgnore
     // Sinon récursivité infinie    
     private List<City> cities = new ArrayList<>();
 }
