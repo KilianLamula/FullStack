@@ -11,7 +11,7 @@
               <option
                 v-for="country in data.allCountries"
                 :key="country.id"
-                :value="country.id"
+                :value="country._links.self.href"
               >
                 {{ country.name }}
               </option>
@@ -54,7 +54,7 @@ const emptyCity = {
   id: "",
   name: "",
   population: 1,
-  country: 0,
+  country: "",
 };
 
 const data = reactive({
@@ -64,14 +64,16 @@ const data = reactive({
 });
 
 function fetchCities() {
-  fetch("api/cities")
+  // Utilise l'API ad-hoc pour avoir le pays de chaque ville
+  fetch("api/allCities")
     .then((response) => response.json())
     .then((json) => {
-      data.allCities = json._embedded.cities;
+      data.allCities = json;
     })
     .catch((error) => alert(error));
 }
 
+// Utilise l'API REST auto-générée pour avoir les pays
 function fetchCountries() {
   fetch("api/countries")
     .then((response) => response.json())
@@ -85,9 +87,9 @@ function saveCity() {
   //var data = new URLSearchParams(this.editedCity).toString();
   ajaxSaveCity()
     .then((json) => {
-      data.allCities.push(json);
       data.editedCity = { ...emptyCity };
-    })
+      fetchCities(); // On rafraîchit les villes
+})
     .catch((error) => alert(error));
 }
 
@@ -100,7 +102,8 @@ async function ajaxSaveCity() {
     },
     body: JSON.stringify(data.editedCity),
   };
-  const response = await fetch("api/saveCity", options);
+  // Utilise l'API REST auto-générée pour enregistrer la ville
+  const response = await fetch("api/cities", options);
   if (!response.ok) {
     // status != 2XX
     const message = await response.text();

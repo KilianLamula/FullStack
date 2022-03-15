@@ -5,13 +5,14 @@
         <tr>
           <th>Nom</th>
           <th>Population</th>
+          <th>Pays</th>          
         </tr>
       </thead>
       <tbody>
         <tr v-for="city in cities" :key="city.id">
           <td>{{ city.name }}</td>
           <td>{{ city.population }}</td>
-        </tr>
+          <td>{{ city.country.name }}</td>        </tr>
       </tbody>
     </table>
   </div>

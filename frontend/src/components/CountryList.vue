@@ -62,7 +62,12 @@ function deleteCountry(country) {
 
 function refresh() {
   fetch("api/countries")
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) { // status != 2XX
+        throw new Error(response.status);
+      }
+      return response.json();
+    })
     .then((json) => {
       data.countries = json._embedded.countries;
     })
