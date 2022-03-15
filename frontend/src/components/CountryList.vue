@@ -33,10 +33,11 @@ let data = reactive({
   countries: [],
 });
 
-defineExpose({
+defineExpose({ // On expose la méthode 'refresh' pour être utilisée par le parent
   refresh,
 })
 
+// On définit les événements générés par le composant
 const emit = defineEmits(['countryEdited',])
 
 function editCountry(country) {

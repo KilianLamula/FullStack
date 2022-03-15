@@ -1,5 +1,7 @@
 package fr.jfc.ptut.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.MediaType;
@@ -16,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 import fr.jfc.ptut.dao.CityRepository;
 import fr.jfc.ptut.dao.CountryRepository;
 import fr.jfc.ptut.dto.CityForm;
+import fr.jfc.ptut.dto.PopulationResult;
 import fr.jfc.ptut.entity.City;
 import fr.jfc.ptut.entity.Country;
 
@@ -68,4 +71,24 @@ public class RestController {
 		log.info("Enregistré: {}", lePays);
 		return lePays;
 	}
+
+	@GetMapping(path = "population") 
+	public @ResponseBody List<PopulationResult> populationParPays() {
+		log.info("Population pour chaque les pays");
+		return countryDao.populationParPaysJPQL();
+	}
+
+	@GetMapping(path = "allCities") 
+	public @ResponseBody List<City> allCities() {
+		log.info("Renvoie la liste des villes");
+		return cityDao.findAll();
+	}
+
+	@GetMapping(path = "allCountries") 
+	public @ResponseBody List<Country> allCountries() {
+		log.info("Renvoie la liste des pays");
+		return countryDao.findAll();
+	}
+
+
 }

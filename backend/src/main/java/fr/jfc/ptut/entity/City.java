@@ -5,6 +5,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -20,13 +22,13 @@ import lombok.ToString;
 public class City {
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Integer id;
-
     @NonNull
     private String name;
-
     private int population;
-
     @NonNull
-    @ManyToOne(optional = false) // obligatoire, la clé étrangère ne doit pas être nulle
+    // obligatoire, la clé étrangère ne doit pas être nulle
+    @ManyToOne(optional = false) 
+    // On ne veut pas inclure la liste des villes dans le JSON
+    @JsonIgnoreProperties({ "cities" })
     private Country country;
 }
